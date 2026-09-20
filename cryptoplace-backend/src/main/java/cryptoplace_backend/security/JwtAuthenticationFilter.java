@@ -34,7 +34,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String token = null;
         String email = null;
 
-        // Check whether Authorization header exists
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
 
             token = authHeader.substring(7);
@@ -42,11 +41,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try {
                 email = jwtUtil.extractEmail(token);
             } catch (Exception e) {
-                // Invalid token
+                System.out.println("Invalid JWT token");
             }
         }
 
-        // Validate token and authenticate user
         if (email != null
                 && jwtUtil.validateToken(token)
                 && SecurityContextHolder.getContext().getAuthentication() == null) {

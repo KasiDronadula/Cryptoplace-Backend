@@ -20,7 +20,7 @@ public class JwtUtil {
         );
     }
 
-    // Generate JWT token
+
     public String generateToken(String email) {
 
         return Jwts.builder()
@@ -33,7 +33,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    // Extract email from JWT token
+
     public String extractEmail(String token) {
 
         return Jwts.parserBuilder()
@@ -44,7 +44,7 @@ public class JwtUtil {
                 .getSubject();
     }
 
-    // Validate JWT token
+
     public boolean validateToken(String token) {
 
         try {
